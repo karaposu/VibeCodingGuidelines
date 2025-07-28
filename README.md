@@ -10,6 +10,8 @@ Before starting any project, establish these ground rules with Claude:
 - **File Path Headers:** Request `# filepath: path/to/file.py` comments at the top of every file for easy navigation
 - **Modern Stack Only:** During active development, skip legacy compatibility concerns - you can add them later if needed
 
+- **Minimize assumptions:** Dont assume things and check them if they are important, you already have accses to code.   
+
 ## Core Steps
 
 ### 1. Context Loading: The Foundation Phase
