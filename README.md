@@ -1,144 +1,317 @@
-# Vibe Coding Guidelines for Claude Code
+# Vibe Coding Guidelines for GPT5 & Claude Code
 
-I've been developing with AI assistants since GPT-4, and now extensively with Claude Code. These guidelines represent hard-won insights from real-world projects. I'm sharing them to help others build more robust software with AI assistance.
+I've been vibe coding with LLMs since GPT-4, and now extensively with Claude Code. These guidelines represent hard-won insights from real-world projects.
 
-## Essential Setup Instructions
+### 0. Establish Ground Rules
 
-Before starting any project, establish these ground rules with Claude:
+Before starting any project, establish these ground rules with AI:
 
-- **No Mock Data:** Tell Claude to avoid mocks/stubs unless absolutely necessary for external dependencies
-- **File Path Headers:** Request `# filepath: path/to/file.py` comments at the top of every file for easy navigation
-- **Modern Stack Only:** During active development, skip legacy compatibility concerns - you can add them later if needed
+- Tell AI to avoid mocks/stubs unless absolutely necessary for external dependencies
+- Request `# filepath: path/to/file.py` comments at the top of every file for easy navigation
+- During active development, skip legacy compatibility concerns - you can add them later if needed
+- If git is initialized, use it to commit changes with proper commit messages
 
-- **Minimize assumptions:** Dont assume things and check them if they are important, you already have accses to code.   
+```
+For this project, please follow these development guidelines:
+1. Avoid using mocks or stubs unless absolutely necessary for external dependencies
+2. Include # filepath: path/to/file.py at the top of every file you create
+3. Focus on modern implementation patterns without legacy compatibility concerns
+4. When making changes, provide git commit messages in conventional format (e.g., "feat:", "fix:", "docs:")
+```
 
-## Core Steps
+### 1. Data Dump
 
-### 1. Context Loading: The Foundation Phase
+Before writing any code, thoroughly brief AI on your project. Share all documentation including project description, existing code files, goals and desired outcomes, and non-technical specifications.
 
-Before writing any code, thoroughly brief Claude on your project:
+Request AI to comprehensively explain:
+- What this project is and what it aims to achieve
+- What are the core challenges for this project
+- The core philosophy and known requirements
+- Explicitly ask AI to prevent code generation at this stage and focus on clear articulation
 
-- Share all documentation, project descriptions, goals, and desired outcomes (even non-technical ones)
-- Request Claude to explain **why** this project exists and what problems it solves
-- Focus on understanding the core philosophy and requirements
-- Explicitly prevent code generation at this stage - you're still thinking
+Then ask AI to create comprehensive documentation files: `project_description.md`, `philosophy.md`, and `known_requirements.md`
 
-### 2. Create a Vague Architecture
+Prompt Sample:
 
-Architecture should be intentionally fuzzy at first:
-- Avoid getting too specific early
+```
+Based on the provided data, please explain what this project is, what it aims to achieve, and what goals and outcomes are desired. 
+Please provide a comprehensive overview without diving into technical implementation details or code. 
+Focus on clear articulation and ensuring mutual understanding of the project's purpose and scope.
+
+After that, use your comprehensive explanation to create the following documentation files in the root directory:
+- project_description.md - A clear overview of what we're building
+- philosophy.md - The core principles and approach
+- known_requirements.md - All identified requirements at this stage
+```
+
+Make sure to read these 3 files and correct any misunderstandings or overdefinitions.
+
+### 2. Creating a Vague Decoupled Architecture
+
+Architecture should be intentionally fuzzy at first to compensate for missing requirements
+- Avoid getting too complex or too specific early
 - Let the design solidify naturally through next steps
-- Focus on high-level concepts and important edge cases
+- Focus on high-level concepts that can handle the project's requirements
+- Save the result to architecture.md
 
-### 3. Ask for the Why, Not the How
+Prompt Sample:
 
-- Before architecture, ask Claude to explain the problem domain
-- "What are the core challenges this solves?"
-- "What are the failure modes we should anticipate?"
+```
+Please propose the most suitable architecture for this project. Keep in mind that we'll be developing iteratively, 
+evolving from a simple prototype to more complex versions over time.
 
-### 4. Ask It to Designate Core Modules and Give You Folder Structure
+Key considerations:
+- Avoid over-engineering or excessive complexity at this stage
+- The architecture will evolve as we progress, so maintain flexibility
+- Focus on high-level concepts that can accommodate the project's core requirements
+- Present a design that balances simplicity with extensibility
+- Make sure to use proper design patterns (e.g., repository pattern for DB related operations)
 
-- Uncoupled core modules enable isolated testing
-- We want to test modules individually, then integrate  
-- This feels like moving slower but actually feels like a development
+Please save your architectural proposal as architecture.md
+```
 
-### 5. Pick One Core Module as Starting Point
+### 3. Critique the Architecture
 
-- Choose tool-like modules first
-- We are building the peripherals before integrators
-- For this designated module ask for all files and contents in full code
-- If there are more than 5 files or if files are too big something is wrong
+The resulting architecture is probably adequate, but during implementation AI may miss or forget how requirements relate to architecture.
 
-### 6. Dependency Mapping interface.md
+- Ask AI to perform a compatibility check between architecture.md and all project data, improving it and saving it back to architecture.md
+- Again, remind AI to avoid getting too complex or too specific early
+- Ask AI to create requirements_and_architecture.md showing how each known requirement maps to the architecture
 
-- After picking a module: "What external libraries will this need?"
-- "What are the interfaces to other modules?"
-- And ask it to save them into interface.md for future reference
-- This interface.mds should be updated after step 8
-- Helps prevent integration surprises in the future
+Prompt Sample:
 
-### 7. Ask It to Design a List of Smoke Tests (Not Code Yet)
+```
+Please review architecture.md and perform a comprehensive compatibility check against all project data and requirements.
+If you identify any significant issues or gaps, please update architecture.md accordingly.
 
-- At least 5 smoke test files
-- Each file containing ~10 subtests
-- Detail what each tests and why
-- If something lacks detail, ask to expand or divide
+Additionally, create requirements_and_architecture.md that maps each known requirement to its corresponding 
+architectural component, demonstrating how the architecture addresses each requirement.
 
-### 8. Ask It to Create the First Smoke Test and Run It
+Remember to maintain appropriate simplicity - we're aiming for a lean, evolvable architecture, not an over-engineered solution.
+```
 
-- Smoke tests = development-focused code
-- Verbose logging for AI self-debugging
-- Run one test at a time
-- Fix errors before moving to next
-- Check previous tests don't break
-- 3+ breaks = refactor signal
-- **Manual Verification:** Always run tests yourself and review terminal output - Claude may miss subtle errors or warnings
+### 4. Designate Core Modules and Define Folder Structure
 
-### 9. Create Next Module in Isolation and Follow Steps 5-8
+- Decoupled core modules enable isolated testing, which is essential for vibe coding success
+- We want AI to test modules individually, then integrate them, then test the integration. While this adds extra steps, it generates cleaner code and provides early warnings for design issues
 
-- Maintain the same rigorous process
-- Keep modules independent
+```
+Based on the project description and architecture, please generate:
 
-### 10. The Refactor Checkpoint
+1. A comprehensive list of core modules with detailed explanations for each:
+   - Primary purpose and functionality
+   - Core responsibilities
+   - Integration points with other modules
+   
+2. A complete folder structure for the project that reflects this modular organization
 
-- Every 3 modules, ask: "Is architecture solid, are we missing something important?"
-- Prevents technical debt accumulation
+Please ensure the modules are properly decoupled to facilitate independent development and testing.
+```
 
-### 11. Ask It to Write Integration Smoke Tests
+### 5. Implement One Module as Starting Point
 
-- Test how modules work together
-- Identify interface issues early
+- Choose tool-like helper modules first
+- The Gradual Integration principle follows this order: Peripherals → Core → Integration
+- The goal is to build peripherals before integrators
+- Ask AI for all files and contents for your chosen module
+- If more than 5 files are generated, this signals the module should be refactored into submodules
 
-### 12. Ask for Edge Cases
+```
+I'd like to begin implementation with the [module_name] module. Based on our previous discussions and documentation, 
+please provide:
 
-- "What edge cases did we miss in our smoke tests?"
-- "Generate adversarial test cases"
-- Claude excels at finding weird scenarios
+- Complete file list with their respective directory paths
+- Full implementation for each file
+- All necessary code to make this module functional
 
-### 13. Turn Smoke Tests and Implementations into Documentation
+Please ensure all files include appropriate headers and follow our established conventions.
+```
 
-- Tests become living documentation
-- Implementation details captured
+### 6. Document Dependencies and Interfaces
 
-### 14. In the End Create the Main Integration Module
+- After implementing a module in step 5, evaluate its interface - this is essential for future integration tests
+- Ask AI "What external libraries does this module need?" and save the response as external_dependencies.md in the module folder
+- Then ask "What are the interfaces to other modules?" and save as interface.md in the same folder
+- These interface.md files and all other docs should be updated as the codebase evolves, especially after step 8
 
-- Now that peripherals are solid
-- Integration becomes straightforward
+```
+Now that we have implemented [module_name], please analyze its dependencies and interfaces:
 
-### 15. Configuration Strategy
+1. External Dependencies Analysis:
+   - What external libraries does this module require?
+   - Please document these in external_dependencies.md within the module folder
 
-- "Design a configuration system for all modules"
-- Environment variables, config files, secrets management
+2. Module Interface Documentation:
+   - What are the public interfaces this module exposes to other modules?
+   - How should other modules interact with this one?
+   - Please document these in interface.md within the module folder
 
-### 16. Ask It to Use All Smoke Tests to Create Pytest Files in Root
+Ensure both documents are comprehensive and will serve as clear contracts for future integration work.
+```
 
-- For CI/CD pipeline
-- Comprehensive test coverage
+### 7. Design Smoke Tests
 
-### 17. Performance & Security Audit
+- Smoke tests are an excellent way to validate implementation integrity
+- In this step, we design the tests without writing them yet
+- Ask AI to design at least 5 smoke test files
+- Tests should progress from initialization through increasingly complex features
+- Each file should contain ~5 subtests
+- Ask AI to detail what each test validates and why it matters
+- If any test lacks detail, ask AI to expand or divide it
+- Save the complete test design to smoke_test_design.md
 
-- "Review the codebase for performance bottlenecks"
-- "Identify potential security vulnerabilities"
-- Do this before finalizing
+```
+Let's design comprehensive smoke tests to validate our implementation. Please create a test plan with the following structure:
 
-### 18. Ask It to Update README File
+- 5 test files, each containing 5 focused test cases
+- File naming convention: test_01_[test_focus_area].py, test_02_[next_focus_area].py, etc.
+- For each test file, provide:
+  - Clear description of what aspect it tests
+  - Why this testing area is critical
+  - Brief outline of each test case within the file
 
-- Complete documentation
-- Setup instructions
-- Architecture overview
+The tests should progress from basic initialization and setup through increasingly complex functionality.
+Please document this complete test design in smoke_test_design.md within the module folder.
+```
 
-## Pro Tips
+### 8. Implement and Run the First Smoke Test
 
-- **When tests break repeatedly (3+ times):** Ask Claude "Is this a design smell? Should we split this module?"
-- **Use magic phrases:** "Think step by step" for complex debugging
-- **Request patterns:** Ask for "defensive programming" patterns in critical modules
-- **Module selection:** Start with utilities/tools, move to business logic, finish with integration
-- **Test philosophy:** Smoke tests should be verbose and educational, not just pass/fail
+- Ask AI to read smoke_test_design.md and implement the first smoke test in the smoke_tests folder within the module
+- Ask AI to run the test and fix either the test or the implementation code as needed
+- Here we want AI to enter an **Iterative Verification** loop, using a test-fix-verify cycle until code pieces grow into compatible implementations
+- **Manual Verification:** Always run tests yourself and review terminal output - AI may miss subtle errors or warnings
 
-## Key Principles
+```
+Please read smoke_test_design.md and implement the first test file in the smoke_tests folder within this module.
 
-1. **Vibe First, Code Later** - Understand the philosophy before implementation
-2. **Isolation Testing** - Build solid foundations through modular testing
-3. **Smoke Tests as Documentation** - Tests that teach and verify
-4. **Iterative Verification** - Test-fix-verify cycle prevents cascade failures
-5. **Gradual Integration** - Peripherals → Core → Integration
+After implementation:
+1. Run the test and identify any failures
+2. Fix either the test or the implementation code as needed
+3. Ensure all tests pass before proceeding
+
+Important guidelines:
+- Avoid using mocks when real components are available
+- Pay special attention to edge cases that might cause integration issues later
+- Include appropriate logging for debugging purposes
+```
+
+### 9. Update Documentation to Reflect Changes
+
+- Since code or tests may have changed during implementation, ask AI to update all relevant documents to stay current
+
+```
+Excellent! Now that this smoke test suite is passing, please review and update all relevant documentation 
+to reflect any changes made during implementation and testing.
+
+Specifically, please update:
+- interface.md if any interfaces changed
+- external_dependencies.md if new dependencies were added
+- Any other documentation that may have become outdated
+
+This ensures our documentation remains accurate and synchronized with the actual implementation.
+```
+
+### 10. Develop Remaining Modules Following Steps 5-9
+
+- Maintain the same rigorous process for each module
+- Keep modules as independent and isolated as possible
+- When a module uses another module, ensure it references interface.md during implementation and smoke tests
+- Continue creating all modules using this consistent approach
+
+### 11. The Refactor Checkpoint
+
+With working modules and passing tests, it's time to refine the architecture and clean the code. Ask AI to identify one core abstraction that would significantly improve code clarity and maintainability.
+
+- Have AI document the proposal in architecture_improvement.md
+- Review to determine if refactoring is worthwhile
+- If yes, implement the refactor and rerun all smoke tests
+
+Prompt Samples:
+
+```
+Now that we have working modules with passing smoke tests, let's step back and evaluate our architecture holistically.
+
+If you were to identify ONE core abstraction that would significantly improve code clarity and maintainability, 
+what would it be? Consider:
+- Current code duplication or patterns
+- Complexity points that could be simplified
+- Opportunities for better separation of concerns
+
+Please provide a detailed explanation and save your architectural improvement proposal in architecture_improvement.md
+```
+
+```
+Please review both architecture.md and architecture_improvement.md, then proceed with the refactoring:
+
+1. Implement the proposed architectural improvements across the codebase
+2. Update all affected smoke tests to work with the new structure
+3. Run all tests and fix any issues until they all pass
+4. Update relevant documentation to reflect the new architecture
+
+This refactoring should result in cleaner, more maintainable code while preserving all existing functionality.
+```
+
+### 12. Performance & Security Audit
+
+- Ask AI to review the codebase for performance bottlenecks and security vulnerabilities
+- Save the results in security_audit.md in the root directory
+- If major issues need immediate attention, ask AI to create architecture_improvement.md based on security_audit.md
+- Then use architecture_improvement.md to guide the refactoring process
+
+```
+Please conduct a comprehensive security audit of our codebase. Focus on:
+
+- Input validation and sanitization
+- Authentication and authorization patterns
+- Data exposure risks
+- Dependency vulnerabilities
+- Common security anti-patterns
+
+Document your findings, severity levels, and recommended remediations in security_audit.md in the root directory.
+```
+
+### 13. Create Documentation Corpus
+
+- Ask AI to create a docs folder and generate documentation for each module
+- Documentation should include edge cases and interface specifications
+- This step indicates that our codebase is stabilizing and maturing
+
+### 14. Create Production-Ready Test Suite
+
+- For CI/CD pipeline integration
+- Convert smoke tests into the appropriate testing framework for your tech stack (pytest, Jest, JUnit, etc.)
+- Leverage comprehensive test coverage from all submodule smoke tests
+
+```
+Please analyze all smoke test files across all modules and create a comprehensive test suite in the root directory.
+
+Requirements:
+1. Convert smoke tests into properly structured test files using the appropriate framework for this tech stack
+2. Organize tests logically for CI/CD pipeline execution
+3. Include appropriate test utilities and helpers specific to the chosen framework
+4. Generate test documentation that explains the testing strategy and coverage
+
+This will serve as our production-ready test suite for continuous integration.
+```
+
+### 15. Create Comprehensive README
+
+- Generate complete project documentation
+- Include setup instructions and architecture overview
+- Ensure the README reflects the current state of the codebase
+
+```
+Please create a comprehensive README.md file for the project root by:
+
+1. Reading and synthesizing all documentation in the docs folder
+2. Reviewing all .md files throughout the project
+3. Creating a professional README that includes:
+   - Project overview and purpose
+   - Installation and setup instructions
+   - Architecture overview with key components
+   - Usage examples and API documentation
+   - Testing instructions
+   - Contributing guidelines
+
+Ensure the README reflects the current state of the codebase and serves as the primary entry point for new developers.
+```
