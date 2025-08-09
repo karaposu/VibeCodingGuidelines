@@ -4,28 +4,42 @@ Refactoring legacy code with AI requires a systematic approach. This guide shows
 
 ## Phase 1: Documentation (Know What You Have)
 
-### 1. Creating Generic Documentation
+### 1. Creating devdocs Documentation
 
-First, you must ask Claude to document the codebase thoroughly:
-- "Analyze this codebase and create comprehensive documentation"
-- "What does each module do and why does it exist?"
-- "Document the data flow and key algorithms"
-- Save output as `generic_documentation.md`
+First, you must ask AI to document the codebase thoroughly using devdocs pattern. 
+And make sure ask AI to identify each module and create documentation for each. 
 
-### 2. Creating endpoints_interfaces.md
 
-Ask Claude to inspect the codebase to create interfaces documentation:
-- "List all public interfaces, APIs, and entry points"
-- "Document input/output formats for each endpoint"
-- "Map dependencies between interfaces"
-- This becomes your contract that must not break
+```
+└── src/
+    ├── devdocs/
+    │   ├── project_description.md
+    │   ├── philosophy.md
+    │   ├── known_requirements.md
+    │   ├── concepts.md
+    │   ├── simplified_concepts.md
+    │   ├── concept_clarifications/
+    │   ├── simplified_concept_clarifications/
+    │   ├── decisions.md
+    │   ├── explorations.md
+    │   ├── notes.md
+    │   └── modules/
+    │       └── auth/
+    │           ├── what_is_this_for.md
+    │           ├── interfaces_and_endpoints.md
+    │           ├── integration_points.md
+    │           ├── integration_requirements.md
+    │           ├── limitations.md
+    │           ├── possible_use_cases.md
+    │           ├── edge_cases_covered.md
+    │           └── example_usage.md
+    |
+```
 
-### 3. Document Edge Cases
+### 2 Understanding Stable Intermediate Forms
+     Refactoring is not sth that should be taken lightly. Many projects fail to do it well even tho they had the 
+     best intentions.  And there are many examples of badly refactored produts which later on kiled them. 
 
-- "What edge cases does this codebase handle?"
-- "Find all error handling and special conditions"
-- "What assumptions does the code make?"
-- Save as `edge_cases.md` - these are your test targets
 
 ### 4. Create Smoke Tests with Old Code
 

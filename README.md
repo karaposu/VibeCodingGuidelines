@@ -6,17 +6,19 @@ I've been vibe coding with LLMs since GPT-4, and now extensively with Claude Cod
 
 Before starting any project, establish these ground rules with AI:
 
-- Tell AI to avoid mocks/stubs unless absolutely necessary for external dependencies
-- Request `# filepath: path/to/file.py` comments at the top of every file for easy navigation
+- Avoid mocks/stubs unless absolutely necessary for external dependencies
+- For each file you generate put the relative path as comment at the top
 - During active development, skip legacy compatibility concerns - you can add them later if needed
-- If git is initialized, use it to commit changes with proper commit messages
+- If git is initialized, use it to commit changes with proper commit messages in suitable times
 
 ```
 For this project, please follow these development guidelines:
 1. Avoid using mocks or stubs unless absolutely necessary for external dependencies
-2. Include # filepath: path/to/file.py at the top of every file you create
+2. Include # filepath: path/to/file at the top of every code file you create
 3. Focus on modern implementation patterns without legacy compatibility concerns
 4. When making changes, provide git commit messages in conventional format (e.g., "feat:", "fix:", "docs:")
+
+
 ```
 
 ### 1. Data Dump
@@ -29,7 +31,7 @@ Request AI to comprehensively explain:
 - The core philosophy and known requirements
 - Explicitly ask AI to prevent code generation at this stage and focus on clear articulation
 
-Then ask AI to create comprehensive documentation files: `project_description.md`, `philosophy.md`, and `known_requirements.md`
+Then ask AI to create comprehensive documentation files: `project_description.md`, `philosophy.md`, and `known_requirements.md` 
 
 Prompt Sample:
 
@@ -42,9 +44,87 @@ After that, use your comprehensive explanation to create the following documenta
 - project_description.md - A clear overview of what we're building
 - philosophy.md - The core principles and approach
 - known_requirements.md - All identified requirements at this stage
+
+
 ```
 
-Make sure to read these 3 files and correct any misunderstandings or overdefinitions.
+Make sure to read these 4 files and correct any misunderstandings or overdefinitions.
+
+
+
+### 2. "devdocs" Design Pattern 
+devdocs pattern is one of the core design patterns for vibe coding. 
+The idea is to use excessive documentation as a source of truth together with code.
+Devdocs matters because during development "why" can matter as much as "how" and to keep track of 
+both context is really important.
+
+"""
+create a devdocs folder, this folder will contain all future development related documentations
+"""
+
+### 3. Concept Clearification 
+
+"""
+and also using these project_description.md, philosophy.md,  known_requirements.md
+ create me 
+   - `concepts_to_implement.md`  by extracting the key
+technical concepts (needed ones only and core ones. )
+
+and then for each concept in concepts_to_implement.md create me a clarification markdown file
+which includes answer to these questions:
+    
+    For each concept write
+    - clear short explanation what it is and why it matters
+    - How this concept helps the overall project
+    - How this concept limits the overall project
+    - What kind of information this concept needs as input
+    - What kind of process this concept should use
+    - What kind of information this concept outputs or relays
+    - explain the good expected outcome of realizing this concept
+    - explain the bad unwanted outcome of realizing this concept
+
+Put 1_ 2_ 3_ like prefix of each file to order them and make sure priotize the core concepts when you are ordering them. and do this in devdocs/concept_clarifications/
+"""
+
+
+
+### 4. Concept Simplification 
+
+The concept_clarifications dir contains many concepts. And implementing each of them with their full scope is not a good idea.  And there is a high chance when you read all 
+these full scope concepts you felt overwhelmed and it will be same for ai too. Our job as a human in the loop is to 
+make AI do the work in a modular gradual increments.  
+
+So at first we want to create a working prototpye and then expand this prototype to MVP over time. 
+This is why first we will ask AI to create simplified_concepts_to_implement.md file. 
+
+But when it is simplifiying these features it must not oversimplify the concept that in the end when we are going to expand the features we would need full rewrite of databases and submodules. 
+
+This is a step where you get to be human in the loop and actually do some real work. It is vital for the rest of the development that you edit the these simplified concept files. Make sure you read them and clarify anything which doesnt make sense. 
+
+"""
+I want you to create simplified_concepts_to_implement.md using concepts_to_implement.md and the goal is to trim the features but the core ones for each concept so we can still have these concepts but they are more about prototype. 
+
+And make sure you follow these rules during simplification
+        - do not oversimplify the concept to the point underlying architecture is oversimplified and does not support the original concept
+        - if a concept has a support for multi subconcept, do not binarize it but diminish the number of supported subconcepts by priotizing the most important ones. 
+
+And then for each concept in simplified_concepts_to_implement.md create me a clarification markdown file
+which includes answer to these questions:
+
+ For each concept write
+    - clear short explanation what it is and why it matters
+    - How this concept helps the overall project
+    - How this concept limits the overall project
+    - What kind of information this concept needs as input
+    - What kind of process this concept should use
+    - What kind of information this concept outputs or relays
+    - explain the good expected outcome of realizing this concept
+    - explain the bad unwanted outcome of realizing this concept
+
+Put 1_ 2_ 3_ like prefix of each file to order them and make sure priotize the core concepts when you are ordering them. and do this in devdocs/simplified_concept_clarifications/
+
+"""
+
 
 ### 2. Creating a Vague Decoupled Architecture
 
@@ -53,6 +133,7 @@ Architecture should be intentionally fuzzy at first to compensate for missing re
 - Let the design solidify naturally through next steps
 - Focus on high-level concepts that can handle the project's requirements
 - Save the result to architecture.md
+
 
 Prompt Sample:
 
