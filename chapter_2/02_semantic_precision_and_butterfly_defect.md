@@ -33,6 +33,7 @@ Wrong terminology compounds:
 - Hooks everywhere → state management complexity
 - Complexity → performance issues
 
+
 The defect spreads through every decision.
 
 ## Finding the Right Words

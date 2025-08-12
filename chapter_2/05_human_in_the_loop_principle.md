@@ -10,14 +10,18 @@ Vibe coding definition: Human and AI alternate control, each doing what they do 
 
 Three reasons:
 
-### 1. AI Lacks Judgment
-AI can generate 50 solutions. It can't tell you which one matters for your specific context, constraints, and future plans.
+### 1. Material Word Gap 
+AI is a digital entity and even tho it is trained on real human data this data doesnt relfect all aspects of our world.  There is a multilayer semantic gap between AI's perspective of our world and how we see the world. 
 
-### 2. AI Lacks Vision
-AI sees current state. You see where you're going. AI optimizes locally. You optimize globally.
+### 2. AI doesnt know when to stop
 
-### 3. AI Lacks Taste
-"Good enough" is subjective. "Elegant" is personal. "Right" depends on context AI doesn't have.
+the famous halting problem. If you ask AI to write a probram it writes to you. And if you ask it to improve it 
+ai will follow this instruction because it is trained to do so.  But if the app is already enough will AI answer you back with "it is good enough we shouldnt touch it"? Current AI systems are trained to obey instructions. And our prompts are the bottleneck when we talk about ai driven development.  Most of the time we as vibe coders dont know the exact explicit implementation therefore even if we are experienced devs we dont know if app is clean enough or robuts or secure enough. 
+
+
+### 3. Curretn AI Lacks Visual intelligence
+I suspect this to change in the course of next 6 months. AI has cataract disease and needs our guidance when dealing with visual requirements or specifications. 
+
 
 ## The Ego Problem
 
@@ -127,4 +131,3 @@ But the principle remains: Human vision + AI execution = Optimal results
 
 The loop isn't a limitation. It's the secret to AI amplification.
 
-Next: Chapter 3 - Setting Up for Success →

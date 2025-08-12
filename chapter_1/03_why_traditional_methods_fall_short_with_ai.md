@@ -69,7 +69,5 @@ Traditional methods optimize for human constraints that no longer exist.
 
 
 
-some extra things to use later in this page
 
 
-Documentation as control surface, not description

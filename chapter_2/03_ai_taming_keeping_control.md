@@ -6,35 +6,27 @@ What's your job when AI can code? You're not a coder anymore. You're a director.
 
 Think about the transition from walking to driving. Walking: you control every step. Driving: you control direction and speed, the car handles the mechanics.
 
-Seemed like a perfect analogy until...
-
-## The Plot Twist
-
-Cars don't drive themselves to random destinations. AI does.
+This seemed like a perfect analogy but cars don't drive themselves to random destinations. AI does.
 
 AI can literally drive itself. Give it a vague goal and it will implement something. Maybe not what you wanted, but something.
 
 ## The Taxi Paradox
 
-Imagine you're in a new city. You use a taxi app.
+Imagine you're in a new city. You wanna go to a restaurant. 
 
-Current reality:
 1. Choose restaurant
 2. Call taxi
 3. Arrive at chosen destination
 
-You never learn the city, but you get where you planned.
+You never learn the city, but you get where you planned. 
 
-## The Future Scenario
+## What the technology is evolving into is like this
 
-What if instead:
-1. Press "I want to eat"
+1. You would just press a button which says "I want to eat"
 2. AI analyzes your mood, energy, preferences, past choices
-3. Taxi arrives and takes you somewhere perfect
+3. A Taxi arrives and takes you somewhere you can eat good food and also feasible price for you.   
 
-No destination needed. The system understands intent better than you understand your own desires.
-
-## This Is Vibe Coding
+No explicit destination needed. Your intent is the main drive. This Is Vibe Coding. 
 
 Old way:
 ```
@@ -45,10 +37,10 @@ AI: *builds exactly that*
 Vibe coding way:
 ```
 Human: "I need users to be able to access their data securely"
-AI: *suggests OAuth, biometrics, passwordless options*
+AI: *suggests OAuth, biometrics, passwordless options* 
 ```
 
-You're not specifying implementation. You're specifying intent.
+You're not specifying implementation. You're specifying intent. 
 
 ## The Blurring Lines
 
@@ -71,7 +63,7 @@ AI handles:
 
 But here's the key: You're still the director.
 
-The taxi might suggest restaurants, but you decide if you want Italian or Thai. AI might suggest architectures, but you decide if you want simple or scalable.
+The taxi might suggest restaurants, but you may decide if you want Italian or Thai. AI might suggest architectures, but you decide if you want simple or scalable.
 
 ## The Taming Part
 
@@ -100,4 +92,3 @@ Too little control: AI builds something you don't understand
 
 Vibe coding lives in the sweet spot: Maximum leverage, maintained understanding.
 
-Next: Emergence of new design patterns →

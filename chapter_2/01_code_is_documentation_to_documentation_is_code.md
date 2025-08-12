@@ -25,7 +25,7 @@ Not the implementation - the specification.
 With AI, we're returning to the original meaning. Documentation doesn't describe code anymore - it generates it.
 
 **Old world**: Write code → Extract documentation
-**New world**: Write documentation → Generate code
+**New world**: Write documentation with ai while Generating code
 
 The documentation becomes the "codex" - the law that governs what gets built.
 
@@ -60,6 +60,3 @@ Your documentation is source code for an AI compiler.
 
 We've come full circle. "Code is documentation" meant only code tells truth. Now "documentation is code" means documentation creates truth.
 
-The old masters were right - but in a way they never imagined.
-
-Next: Semantic Precision and "The Butterfly Defect" →

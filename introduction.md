@@ -1,14 +1,13 @@
 # Introduction
 
-I've been vibe coding with LLMs since GPT-4, and now extensively with Claude Code. These guidelines represent hard-won insights from real-world projects not just by me but from many developers (thank you internet)
+I've been vibe coding with LLMs since GPT-4, and now extensively with Claude Code. These guidelines represent hard-won insights from real-world projects not just by me but from many developers whom I worked with. 
 
-First of all if you have prior coding knowledge (any language is fine) this is more than enough. 
+First of all if you have prior coding knowledge (any language is fine) this book is more than enough. And if you have no idea about coding but want to create apps like a mid level software developer in no time, then this book also for you.  Many of my collegues wont like it but coding is not required anymore.  with Vibe coding each new month the 
+required technical knowledge gets lessen and lessen. 
 
-Vibe coding is a new coding where each month the required prior knowledge matters less.
+All these guidelines are the actually logical steps any developer would follow and not lifehacks. You can think of them as verbalized thoughts of any developer. In this book we also provide full prompts so you can just copy and paste for your use case and get your app working really quick. 
 
-All these guidelines are the actually logical steps any developer should follow and not lifehacks. You can think of them as verbalized experience and we also provide full prompts which include some solutions to common pitfalls of vibecoding. 
 
-This was an interesting write for me. I also extensively used AI to process and refine some thoughts. I knew something by intuition and did not really understood why. And I did not know that I did not understood them as well. I guess one of the greatest benefits of AI is that humanity will be finally understand themselves. Regardless of it dooms us or not AI is cool and building with AI feels like magic. 
 
 ## What This Book Offers
 
@@ -19,7 +18,7 @@ This book isn't about tricks or shortcuts. It's about establishing a systematic 
 - How to structure projects for optimal AI collaboration
 - Practical patterns that prevent common AI coding pitfalls
 
-And I geniunly think you will enjoy reading it as a developer. 
+And I geniunly think you will enjoy reading it as a developer or AI enthuaist.
 
 ## Who Should Read This
 
@@ -33,5 +32,7 @@ And I geniunly think you will enjoy reading it as a developer.
 Throughout this book, we'll explore the evolution from traditional development to AI-assisted "vibe coding." You'll discover why conventional methodologies often clash with AI's natural patterns and learn a new approach that embraces AI's strengths while maintaining human control.
 
 Whether you're building a simple script or architecting a complex system, these patterns will help you tame AI's power and channel it productively.
+
+If you want to cut the chase feel free to skip to chapter 6 where we start discussing real implementation details. 
 
 Let's begin this journey into the future of software development.

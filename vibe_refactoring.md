@@ -2,6 +2,9 @@
 
 Refactoring legacy code with AI requires a systematic approach. This guide shows how to leverage Claude for safe, comprehensive refactoring while maintaining functionality.
 
+
+
+
 ## Phase 1: Documentation (Know What You Have)
 
 ### 1. Creating devdocs Documentation
@@ -38,7 +41,15 @@ And make sure ask AI to identify each module and create documentation for each.
 
 ### 2 Understanding Stable Intermediate Forms
      Refactoring is not sth that should be taken lightly. Many projects fail to do it well even tho they had the 
-     best intentions.  And there are many examples of badly refactored produts which later on kiled them. 
+     best intentions and really experienced teams.  
+
+     And there are many examples of badly refactored produts which later on kiled them. 
+
+    of course most refactoring you will be doing wont be in similar scale and mostly safe but still a wrong guided refactoring can cause codebase to position itself further from the optimal solution space and if not been careful 
+    and the core illness is not fixed and maybe unseen new compleixtis are introduced,  solving these will require more and more complexities. such as entangled rope. 
+
+    this is why we need a way to move step by step and most possible isolation. And for each refactor we must check if we broke something or not.  
+    this is why we are using sth called  Test-Anchored Refactoring - Always maintain passing tests
 
 
 ### 4. Create Smoke Tests with Old Code
