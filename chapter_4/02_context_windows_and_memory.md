@@ -4,9 +4,11 @@
 
 Every AI has a context window - the total amount of text it can "see" at once. Think of it as RAM, not hard drive.
 
-- Claude: ~100k tokens
-- GPT-4: ~128k tokens  
-- GPT-3.5: ~16k tokens
+As of 2025 
+
+- Claude (Pro): ~100k tokens
+- GPT-5 (Pro): ~128k tokens  
+
 
 One token ≈ 0.75 words. Do the math for your codebase.
 
@@ -28,6 +30,8 @@ As conversation grows, early content falls out:
 "Why aren't you following the ground rules?" <- AI: "What ground rules?"
 [Current message]
 ```
+
+Anchor pattern is a good fix for this issue. 
 
 ## Token Economics
 
@@ -112,6 +116,8 @@ class UserService:
     # ... just signatures
 ```
 
+devdocs pattern explicitly creates a doc called interfaces_and_endpoints.md which can be used for this exact purpose as well. 
+
 ### Selective Inclusion
 
 Use AI to identify what to include:
@@ -131,71 +137,6 @@ AI often knows what it needs to see.
 
 Like Google Maps for code.
 
-## Context Window Hacks
-
-### 1. External Storage Pattern
-
-```
-"I've created a summary at summary.md
-Please read it for context, then we'll work on specifics"
-```
-
-Use files as external memory.
-
-### 2. The Anchor File
-
-Keep one file always in context:
-- `CONTEXT.md` with critical info
-- Key architectural decisions
-- Current task focus
-
-Reference it frequently.
-
-### 3. Prompt Compression
-
-Instead of:
-```
-"Please create a new function that handles user authentication 
-by checking the email and password against the database 
-and returns a JWT token if successful"
-```
-
-Use:
-```
-"Create auth function: email/password -> JWT token"
-```
-
-Save tokens for code.
-
-## Memory Illusions
-
-AI seems to "remember" because:
-1. Training on common patterns
-2. Your variable names hint at purpose
-3. Context provides clues
-4. Attention mechanism finds relationships
-
-It's pattern matching, not memory.
-
-## Working with Limited Context
-
-### For Small Windows (GPT-3.5)
-- One file at a time
-- Minimal context sharing
-- Frequent summaries
-- Clear, specific requests
-
-### For Medium Windows (Claude)
-- Module-level work
-- Selected dependencies
-- Interface documentation
-- Periodic refreshes
-
-### For Large Windows (GPT-4)
-- Multi-module refactoring
-- Entire subsystems
-- Complex integrations
-- Still need strategy
 
 ## The Context Budget
 
@@ -214,33 +155,3 @@ Treat tokens like money:
 
 Time to refresh or start new conversation.
 
-## The New Conversation Strategy
-
-When starting fresh:
-1. Summarize previous work
-2. Share current state
-3. Define next goal
-4. Include only relevant code
-
-Don't try to recreate entire history.
-
-## Context Window Future
-
-Windows are growing:
-- GPT-3: 4k → GPT-4: 128k
-- Exponential growth expected
-- Eventually: entire codebases
-- New patterns will emerge
-
-But for now, window management is crucial.
-
-## Quick Reference
-
-**Small project (<50 files)**: Share freely
-**Medium project (50-500 files)**: Share strategically  
-**Large project (500+ files)**: Share minimally
-**Huge project (5000+ files)**: Work in islands
-
-The art is knowing what to include and what to leave out.
-
-Next: Strengths and Limitations →

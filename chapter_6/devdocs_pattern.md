@@ -41,6 +41,7 @@ project-root/
     │           ├── possible_use_cases.md
     │           ├── edge_cases_covered.md
     │           └── example_usage.md
+                └── summary.md
     |
 ```
 

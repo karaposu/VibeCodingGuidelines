@@ -6,12 +6,12 @@ When AI reads your code, it doesn't read like humans do. It uses "attention" - w
 
 Think of it like this:
 - Human reading: Sequential, left-to-right, building understanding
-- AI reading: Parallel, everything at once, finding patterns
+- AI reading: Parallel, everything at once, finding patterns and connections
 
 
-## why it matters
+## Why it matters
 
-knowing how attention works can help you enlighten the work of LLM. 
+knowing how attention works can help you lighten the work of LLM. 
 
 ## The Spotlight Metaphor
 
@@ -25,18 +25,20 @@ This happens for every token, instantaneously.
 
 ## Why This Matters for Vibe Coding
 
-### 1. Order Still Matters
-Even though AI reads everything at once, token position affects attention weights.
+### 1. Context and Relevance Matter Most
+While AI processes everything in parallel, what matters most is relevance to the task at hand.
 
 ```python
-# This comment at the top gets more attention
-def important_function():
+# If you're asking about authentication, this gets attention
+def authenticate_user():
     pass
     
-# This comment at the bottom gets less attention
+# This gets less attention regardless of position
+def calculate_recipe_calories():
+    pass
 ```
 
-Put critical information early.
+Put related information together, make intent clear.
 
 ### 2. Proximity Is Power
 Related concepts near each other strengthen attention bonds.
@@ -80,21 +82,21 @@ class UserService:
 
 But don't overdo it - that's keyword stuffing.
 
-## Attention Budget
+## Context Window Limits
 
-AI has finite attention. In a large context:
-- Early content: High attention
-- Middle content: Moderate attention
-- Late content: Lower attention
-- Very late content: Minimal attention
+AI has finite context. When you approach the context limit:
+- Relevant content to your question gets prioritized
+- AI focuses on what's needed for the current task
+- Very long contexts can sometimes cause confusion
+- Organization and clarity matter more than position
 
-This is why file order matters when sharing multiple files.
+This is why grouping related files matters when sharing multiple files.
 
 ## Practical Implications
 
 ### 1. Lead with Intent
 ```
-# BAD: Burying the lede
+# BAD: Burying the lead
 # This function does various things with data
 # It processes some stuff and returns results
 # Oh, by the way, it's for authentication
@@ -115,8 +117,7 @@ When sharing multiple files, group by relevance:
 
 Not alphabetically or randomly.
 
-### 3. The Anchor Pattern
-Use distinctive names that create strong attention anchors:
+### 3. Distinctive Names for better attention
 
 ```python
 # Weak anchor
@@ -143,12 +144,6 @@ def safe_function():
 
 AI might focus on the TODO instead of your actual request.
 
-### Error Messages
-```python
-raise Exception("CRITICAL: Database corruption detected!")
-```
-
-AI might panic and suggest emergency fixes for example code.
 
 ### Strong Keywords
 Words like "deprecated", "legacy", "broken", "hack" trigger strong attention. Use carefully.
@@ -181,7 +176,7 @@ I need help specifically with Y."
 Attention ≠ Memory
 
 - Attention: What AI focuses on right now
-- Memory: What AI remembers from training
+- Memory: What AI remembers from the codebase
 
 You can direct attention. You can't change memory.
 
@@ -209,4 +204,3 @@ Poor attention management:
 
 Understanding attention helps you communicate effectively with AI. It's not about tricking the system - it's about clarity.
 
-Next: Context Windows and Memory →

@@ -2,10 +2,17 @@
 
 ## Why Ground Rules Matter
 
-AI has no implicit understanding of your preferences. Every project starts fresh. Ground rules are your project's constitution - they shape every decision AI makes.
+AI has it's own preferences regarding how development should be made,tech stack, design, platform. And also AI has no implicit understanding of your preferences.  This is something prevents vibing and causes frictions during development. 
+
+This is why we establish some ground rules right after each new AI session. 
+First type is generic ground rules
+the second type is preferences, 
 
 
-## The Universal Ground Rules
+I will explain them with my own use cases and examples. 
+
+
+## The generic Ground Rules
 
 ### 1. No Mocks Without Necessity
 
@@ -55,9 +62,9 @@ Format: Conventional commits (feat:, fix:, docs:)
 
 
 
-## Combined Prompt
+## Example Prompt
 
-Create `ground_rules.md` in your project:
+Create `ground_rules.md` in your project and add the below prompt along with your other preferences
 
 ```markdown
 # Project Ground Rules
@@ -66,15 +73,18 @@ Create `ground_rules.md` in your project:
 1. No mocks unless necessary for external dependencies
 2. Include filepath comment at top of each file
 3. Skip legacy compatibility during development
-4. Commit with conventional messages
+4. Commit progress with conventional messages
+5. Development should be done in modules and isolated logic. 
+6. Variable names shouldnt be ambigious 
+
+
 
 ```markdown
 
-if you have Project-Specific Rules or Technical Choices append them as well. 
- 
-Dont forget to reference it in every new session:
+Dont forget to tell AI to read it and follow it in every new session
+
 ```
-"Please read GROUND_RULES.md and follow these rules for all code generation"
+"Please read ground_rules.md and follow these rules for all code generation"
 ```
 
 
