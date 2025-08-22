@@ -23,7 +23,7 @@ NOT: "Should we use microservices?"
 ```
 
 ### 3. Performance Constraints
-AI doesn't know your scale or bottlenecks.
+AI doesn't know your scale or bottlenecks. 
 
 ```
 GUIDE: "This needs to handle 10k requests/second"
@@ -52,40 +52,40 @@ NOT: "How should this communicate with other services?"
 Once direction is set, let AI handle specifics.
 
 ```
-FOLLOW: "What's the best way to implement JWT refresh tokens?"
 GUIDE: "Users need to stay logged in for 30 days"
+FOLLOW AI's answer to: "What's the best way to implement JWT refresh tokens?"
 ```
 
 ### 2. Best Practices
 AI knows current standards better than most developers.
 
 ```
-FOLLOW: "How should I structure this React component?"
 GUIDE: "It needs to display user profiles"
+FOLLOW AI's answer to: "How should I structure this React component?"
 ```
 
 ### 3. Error Handling
 AI excels at comprehensive error cases.
 
 ```
-FOLLOW: "What errors should this API endpoint handle?"
 GUIDE: "It processes payment webhooks"
+FOLLOW AI's answer to: "What errors should this API endpoint handle?"
 ```
 
 ### 4. Refactoring Suggestions
 AI sees patterns you might miss.
 
 ```
-FOLLOW: "This code feels complex. Suggest improvements."
 GUIDE: "It must remain backwards compatible"
+FOLLOW AI's suggestion when asking: "This code feels complex. Suggest improvements."
 ```
 
 ### 5. Technology Selection
 For well-understood problems, AI knows tool tradeoffs.
 
 ```
-FOLLOW: "What caching solution for session data?"
 GUIDE: "We're on AWS with Redis experience"
+FOLLOW AI's recommendation for: "What caching solution for session data?"
 ```
 
 ## The Grey Zone
@@ -135,12 +135,6 @@ AI: "Focused integration test suite..."
 - Common patterns apply
 - You're learning something new
 
-## The Evolution Pattern
-
-Projects typically flow:
-1. **Early**: Heavy guiding (requirements, constraints)
-2. **Middle**: Balanced (negotiating approaches)
-3. **Late**: Heavy following (implementation details)
 
 ## Communication Strategies
 
@@ -168,55 +162,3 @@ What's the current best practice (follow)?
 Must integrate with Okta (guide)."
 ```
 
-## Anti-Patterns
-
-### Over-Guiding
-```
-"Create a function named X that takes Y parameters 
-and implements using Z algorithm with..."
-```
-You're using AI as a typist.
-
-### Over-Following
-```
-"Build me an app"
-"What kind?"
-"You decide"
-```
-You'll get generic solutions.
-
-### Guide/Follow Confusion
-```
-"Implement auth however you think is best 
-but it must work exactly like our old system"
-```
-Mixed signals create bad results.
-
-## The Trust Ladder
-
-As you work with AI more:
-1. **Start**: Guide everything
-2. **Learning**: Follow for exploration
-3. **Comfort**: Balance naturally
-4. **Mastery**: Intuitive switching
-
-## Quick Decision Framework
-
-Ask yourself:
-1. Does this require domain knowledge? → Guide
-2. Is this a solved problem? → Follow
-3. Are there external constraints? → Guide
-4. Am I learning? → Follow
-5. Is there one right answer? → Guide
-
-## The Meta Rule
-
-When unsure whether to guide or follow:
-```
-"Given [context], should I specify [decision] 
-or would you recommend an approach?"
-```
-
-Let AI help you decide when to lead.
-
-Next: Managing AI Drift →

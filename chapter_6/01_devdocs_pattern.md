@@ -1,11 +1,51 @@
 # The DevDocs Pattern
 
+This is most common vibe coding pattern. And the reason is it fills common pitfalls when it comes to vibe coding. And extremely helpful. 
+
+If you have a specific vision on your mind it is not good idea to let ai go rogue for hours and create something different. It is really important to be on the same page of what is being created. But development is such process where most of the concepts will evolve over time and even though you have a good beginning documentation it is easy to get lost and introduce wrong concepts. 
+
+
+And also without devdocs pattern. When we ask AI to do/implement something, it will include hidden task of planning
+as well and due to context limitations memory state might be missing vital info and doing planning and implementation in one step will usuall introduce errors and hallucinations. 
+
+Just like humans, it is easier for AI to focus on one task. This is why we will lighten it's task by enforcing a seperation between planning phase and implementation phase. 
+
+
+
+1.  we shold know what AI thinks before we allow it to do the implemention, in every major step. 
+
+
+
+2. AI should know what to implement before the implemention
+
+- AI should know what to implement before the implemention
+- Human in the loop 
+
+
+
+
+
+
+This pattern has 3 concepts
+
+- Devdocs helps us know what AI thinks before we let it implement something. 
+- Let AI document what he should implement before it implements it. 
+- Devdocs documentation is part of development 
+
+
+
+devdocs enables you to be human in the loop. 
+
+
+
+
+
 ## Why Documentation as Source of Truth
 
 Traditional development: Code is truth, docs are afterthought.
 Vibe coding flips this: Documentation drives development.
 
-In vibe coding, documentation isn't overhead - it's the specification that AI uses to build and maintain the system correctly.
+In vibe coding, documentation isn't overhead or afterthought - it's the specification that AI uses to build and maintain the system correctly.
 
 DevDocs pattern is one of the core design patterns for vibe coding. The idea is to use excessive documentation as a source of truth together with code. DevDocs matters because during development "why" can matter as much as "how" and to keep track of both context is really important.
 
@@ -14,6 +54,20 @@ Unlike traditional docs convention to store documentation in the root, devdocs l
 - They're not optional metadata - they're required source material for further building and changes
 - Keeping them with code emphasizes their active role
 - They document intent while being necessary inputs for AI-driven development
+
+
+Also one thing that is really important is to throughly reading the generated devdocs files and fixing them as soon as possible. 
+
+
+Devdocs are 3 generic devdoc categories
+
+
+generic project documentation which are the root documents
+dev related documentatiion 
+documentation about runing logic 
+
+
+
 
 ## The DevDocs Structure
 
@@ -31,8 +85,9 @@ project-root/
     │   ├── decisions.md
     │   ├── explorations.md
     │   ├── notes.md
+        ├── user_stories.md
     │   └── modules/
-    │       └── auth/
+    │       └── module_a/
     │           ├── what_is_this_for.md
     │           ├── interfaces_and_endpoints.md
     │           ├── integration_points.md
@@ -42,16 +97,26 @@ project-root/
     │           ├── edge_cases_covered.md
     │           └── example_usage.md
                 └── summary.md
+            
+        issues/
+            solved
+                01_issue_tg_connection
+                        explaination.md (includes when this issue occurs, and why it is problem in context of whole app) 
+                        what_i_learned.md (explains what was done wrongly and why and what was the solition about this issue )
+            unsolved
+            future
     |
 ```
 
 
 
+Lets explain each devdocs file. 
+
 ## The Three Foundation Documents
 
 ### 1. project_description.md
 
-This document Explains the project in general with all available details. It is basically structured version of messy project data.
+This document explains the project in general with all available details. It is basically structured version of messy project data.
   It should answer:
      What are we building?
      What problem are we solving
@@ -62,37 +127,46 @@ This document anchors everything. AI reads this first.
 
 ### 2. philosophy.md
 
+This document focuses of real world impacts/motivations/goals of the project. Holds important information and prevents  Complexity Drift as well as Scope Drift. 
 Answers "what is the philosophy of this project?". Doesnt go into technical details but aims to capture the soft requirements and goals which are usually missed. 
 
-Philosophy contribbutes preventing feature drift.
+
 
 ### 3. known_requirements.md
 
-What constraints exist?
+Answer the question of 
+What constraints exist for given project. 
+And inspect the Requirements in 3 main categories:
 
-```markdown
-# Known Requirements
-
-## Technical Requirements
-- Must work on iOS and Android
-- Offline-first architecture
-- Data export in CSV format
-- < 50MB app size
-
-## Business Requirements
-- No subscription model
-- One-time purchase only
-- No ads ever
-- No data collection
-
-## User Requirements
-- Works in multiple currencies
-- Basic categories (food, transport, etc)
-- Monthly/yearly views
-- Simple insights
-```
+ - Known Technical Requirements
+ - Known Business Requirements
+ - Known User Requirements
 
 Requirements ground AI suggestions in reality.
+
+
+## Concept Documentations
+what is concepts.md
+
+what is concept_clarifications/ folder for and what it includes
+
+why do we need simplified_concepts.md and simplified_concept_clarifications/
+
+
+## Context related documentation files
+
+what is decisions.md
+what is notes.md
+what is user_stories.md
+what is  explorations.md
+
+
+## Module related documentation files
+
+
+
+
+
 
 ## Living Documentation Files
 
@@ -304,4 +378,15 @@ Each module needs its own context. Don't assume it's obvious.
 
 DevDocs pattern transforms AI from code generator to thoughtful collaborator who understands not just what to build, but why and how it fits together.
 
-Next: Smoke Tests Pattern →
+
+
+
+
+
+
+
+
+
+
+
+

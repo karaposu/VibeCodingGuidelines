@@ -97,78 +97,7 @@ AI applies patterns even when inappropriate.
 ### 4. No Persistent Memory
 Can't remember "we decided to keep it simple."
 
-## Drift Detection
 
-### Early Warning Signs
-- Imports growing rapidly
-- New directories appearing
-- Inconsistent naming
-- Multiple ways to do same thing
-- "Just one more feature"
-
-### The Complexity Budget
-Track complexity like technical debt:
-```
-Start: Complexity budget = 10
-Add OAuth: -3 
-Add Redis: -2
-Add queue: -2
-Remaining: 3
-```
-
-When budget hits 0, stop adding.
-
-## Drift Prevention
-
-### 1. The North Star Document
-Create `VISION.md`:
-```markdown
-# Project Vision
-
-This is a SIMPLE todo app for personal use.
-
-NOT:
-- Multi-user
-- Enterprise
-- Real-time
-- Distributed
-
-Core principle: If it takes > 1 hour to implement, we don't need it.
-```
-
-Reference constantly.
-
-### 2. Explicit Constraints
-Start requests with constraints:
-```
-"Add password reset. Keep it simple - no external services, 
-no queues, just database tokens."
-```
-
-### 3. The Anchor Pattern
-Regular reality checks:
-```
-"Before we continue, let's review:
-- We're building X
-- Current stack is Y
-- We're avoiding Z
-Still aligned?"
-```
-
-### 4. Incremental Boundaries
-Set limits before each phase:
-```
-"For this session:
-- No new dependencies
-- No new patterns
-- Just implement the feature"
-```
-
-### 5. The Simplicity Refactor
-Periodically ask:
-```
-"This is getting complex. How can we simplify while keeping functionality?"
-```
 
 ## Drift Recovery
 

@@ -8,10 +8,14 @@ Quick tests to see if software "catches fire." They are mostly used to understan
 
 In vibe coding:  
 
-Vibe coding is paradigm where verbosity matters. Usual test driven methods are about CI/CD but with vibe coding we want to see the logs want them verbose as much as possible. because the point is not that code passes the test but it shows and outputs the working logic of the code. 
+Vibe coding is paradigm where verbosity matters. Usual test driven methods are about CI/CD but with vibe coding we want to see the logs want them verbose as much as possible. The point of smoke tests is notjust to know if code passes or not but read some real data in the output and confirm things are actually working. 
+
+It is so easy for AI to start writing non verbose tests and when you read the output you wont see any data exposed and you have no idea how output data looks or if AI decided to use mocks and etc. So in vibe coding we explicitly request from AI to write these tests in a way that human can read and see the data flow and interpret as well.  
+
+
 
 Smoke tests are 
-     - Validation that AI understands your intent
+     - Validation that AI understands your intent and you understand AI's intent. 
      - Shows AI indeed did what think it wanted to do
      - early warning system and prevent propagations of misunderstandings
 
@@ -25,7 +29,9 @@ Example:
 ```
 Human: "Create user authentication"
 AI: *builds biometric authentication system*
-Smoke test: "Wait, I meant email/password"
+Smoke test file shows eye scanner codes
+Human: "Wait, I meant just email/password"
+
 ```
 
 ## The Smoke Test Philosophy
