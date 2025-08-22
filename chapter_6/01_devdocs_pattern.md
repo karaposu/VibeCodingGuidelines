@@ -46,8 +46,7 @@ project-root/
     │   ├── concept_clarifications/
     │   ├── simplified_concept_clarifications/
     │   ├── decisions.md
-    │   ├── explorations.md
-    │   ├── notes.md
+    │   ├── what_I_learned.md
         ├── user_stories.md
     │   └── modules/
     │       └── module_a/
@@ -119,14 +118,14 @@ Concepts can be anything.  A concept is a meta name which can be anything relate
 Concept documentations answer what needs to be done in a higher level and perfect way to do modularized development practice. 
 
 
-### concepts_to_implement.md
+### concepts.md
 
 This document lists all concepts using root project documentations. (project_description.md, philosophy.md,  known_requirements.md)
  To be not overbloated we ask AI to create it using key technical concepts only. 
 
 ### concepts_clarifications folder 
 
-We ask AI to create clarifications for each concept listed in concepts_to_implement.md file. 
+We ask AI to create clarifications for each concept listed in concepts.md file. 
 This is folder will contain aroud 10 different documentation. Explaining each concept. 
 And as a human in the loop we get to read them and have full understanding of AI's mind. 
 
@@ -140,32 +139,32 @@ And each concept documentation answer these questions:
     - explain the good expected outcome of realizing this concept
     - explain the bad unwanted outcome of realizing this concept
 
-Which inspect the concept from multiple point of views and doesnt allow anything to be unmentioned. 
+Which inspect the concept from multiple point of views and doesnt allow anything to be missed. 
 
 
 
+### simplified_concepts.md
+
+When we start developing something new usually we start with prototyping and then continues enhancements and feature additions turn protoype into a MVP.  there is a high chance when you read all 
+these full scope concepts in concepts.md  you feel overwhelmed and it will be same for ai too. Our job as a human in the loop is to  make AI do the work in a modular gradual controllable increments.  
+
+AI wont do that by itself. Even tho it is possible to ask AI to implement a prototype version with less features is possible you will notice that AI's simplification intuition is not well finetuned and must be checked by human. 
+
+This is why we are asking AI to create this documentation for us (hiling). So we can hil it.. 
+
+During this stage we ask ai to
+
+  - do not oversimplify the concept to the point underlying architecture is oversimplified and does not support the original concept
+  - if a concept has a support for multi subconcept, do not binarize it but diminish the number of supported subconcepts by priotizing the most important ones. 
 
 
+### simplified_concepts folder 
 
+Same as concepts_clarifications folder. 
+We ask AI to create clarifications for each concept listed in simplified_concepts.md file. Explaining each concept. 
+And as a human in the loop we get to read them and have full understanding of AI's mind. 
 
-
-
-
-
-
-
-
-
-
-and also using these project_description.md, philosophy.md,  known_requirements.md
- create me 
-   - `concepts_to_implement.md`  by extracting the key
-technical concepts (needed ones only and core ones. )
-
-and then for each concept in concepts_to_implement.md create me a clarification markdown file
-which includes answer to these questions:
-    
-    For each concept write
+And each concept documentation answer these questions: 
     - clear short explanation what it is and why it matters
     - How this concept helps the overall project
     - How this concept limits the overall project
@@ -179,80 +178,27 @@ which includes answer to these questions:
 
 
 
+Existance of simplified_concepts.md with concepts.md together in the code base is vital.  These 2 devdocs provide the expansion scope to the ai and when new middle-concepts are introduced AI can arange them in such way that they are suitable for current and future scoppes. 
 
 
 
-
-
-## Why Documentation as Source of Truth
-
-Traditional development: Code is truth, docs are afterthought.
-Vibe coding flips this: Documentation drives development.
-
-In vibe coding, documentation isn't overhead or afterthought - it's the specification that AI uses to build and maintain the system correctly.
-
-DevDocs pattern is one of the core design patterns for vibe coding. The idea is to use excessive documentation as a source of truth together with code. DevDocs matters because during development "why" can matter as much as "how" and to keep track of both context is really important.
-
-Unlike traditional docs convention to store documentation in the root, devdocs lives inside the src because:
-- DevDocs are integral to the build process (AI reads them)
-- They're not optional metadata - they're required source material for further building and changes
-- Keeping them with code emphasizes their active role
-- They document intent while being necessary inputs for AI-driven development
-
-
-Also one thing that is really important is to throughly reading the generated devdocs files and fixing them as soon as possible. 
-
-
-Devdocs are 3 generic devdoc categories
-
-
-generic project documentation which are the root documents
-dev related documentatiion 
-documentation about runing logic 
-
-
-
-
-
-
-
-
-
-
-
-## Concept Documentations
-what is concepts.md
-
-what is concept_clarifications/ folder for and what it includes
-
-why do we need simplified_concepts.md and simplified_concept_clarifications/
-
-
-## Context related documentation files
-
-what is decisions.md
-what is notes.md
-what is user_stories.md
-what is  explorations.md
-
-
-## Module related documentation files
-
-
-
-
-
-
-## Living Documentation Files
+## Other Devdoc Files
 
 ### decisions.md
 
-Track architectural decisions as they happen. 
-each entry explains 
+this document is to log architectural decisions with their reasons. 
+This is important to anchor our development progress cross sessions. 
+Sometime we come across a bug or edge case scenario where we are spend hours coming up with an elegant solution design or architecture tweak to solve it. But such solution is not clear from the very beginning and if AI somehow
+loses the context then when it looks at this design without the edge case in mind it can decide this is something uncessary and break the delecate solution. 
+
+
+Each entry in this document explains 
     - what is current bottleneck/issue
-    - what are our options
-    - what is the best one, why
-    - explain what needs to be changed in high level 
+    - what are the options considered
+    - what option is selected and why
+    - Explain in a high level what consequences this change might cause 
+
+it looks like this:
 
 ```markdown
 # Architectural Decisions
@@ -268,104 +214,16 @@ each entry explains
 - Can split later if needed
 ```
 
-### explorations.md
 
-Document what you tried and why you moved on:
+### what_I_learned.md
 
-```markdown
-# Explorations
+Includes implementation details where AI learned/uncovered things through testing and not obvious from start
 
-## Attempted: Real-time sync across devices
-- Built prototype with CloudKit
-- Realized it violated our privacy-first philosophy
-- Learned: Local-first means truly local
-- Abandoned in favor of manual export/import
-
-## Attempted: AI-powered categorization
-- Too complex for MVP
-- Privacy concerns with cloud AI
-- Saved for future local ML exploration
-```
-
-### notes.md
-
-Informal thoughts that might become formal later:
-
-```markdown
-# Development Notes
-
-- Currency conversion might need offline rates
-- Consider widget for quick expense entry
-- Dark mode is probably essential
-- Export format might need receipts attachment later
-```
-
-## Concepts Documentation
+This documentation is particularly useful for external package use. Lots of packages/APIs do miss some implementation
+details and just like any developer AI also can identify these and it is nice idea to save them to not go through rediscovering them. 
  
-### concepts.md & concept_clarifications
-
-Extract key technical concepts from requirements
-
-"""
-Using these project_description.md, philosophy.md,  known_requirements.md
- create me 
-   - `concepts_to_implement.md`  by extracting the key
-technical concepts (needed ones only and core ones. )
-
-and then for each concept in concepts_to_implement.md create me a clarification markdown file
-which includes answer to these questions:
-    
-    For each concept write
-    - clear short explanation what it is and why it matters
-    - How this concept helps the overall project
-    - How this concept limits the overall project
-    - What kind of information this concept needs as input
-    - What kind of process this concept should use
-    - What kind of information this concept outputs or relays
-    - explain the good expected outcome of realizing this concept
-    - explain the bad unwanted outcome of realizing this concept
-
-Put 1_ 2_ 3_ like prefix of each file to order them and make sure priotize the core concepts when you are ordering them. and do this in devdocs/concept_clarifications/
-"""
-
-### simplified_concepts.md & simplified_concept_clarifications/
 
 
-The concept_clarifications dir contains many concepts. And implementing each of them with their full scope is not a good idea.  And there is a high chance when you read all 
-these full scope concepts you felt overwhelmed and it will be same for ai too. Our job as a human in the loop is to 
-make AI do the work in a modular gradual increments.  
-
-So at first we want to create a working prototpye and then expand this prototype to MVP over time. 
-This is why first we will ask AI to create simplified_concepts_to_implement.md file. 
-
-But when it is simplifiying these features it must not oversimplify the concept that in the end when we are going to expand the features we would need full rewrite of databases and submodules. 
-
-This is a step where you get to be human in the loop and actually do some real work. It is vital for the rest of the development that you edit the these simplified concept files. Make sure you read them and clarify anything which doesnt make sense. 
-
-
-"""
-I want you to create simplified_concepts_to_implement.md using concepts_to_implement.md and the goal is to trim the features but the core ones for each concept so we can still have these concepts but they are more about prototype. 
-
-And make sure you follow these rules during simplification
-        - do not oversimplify the concept to the point underlying architecture is oversimplified and does not support the original concept
-        - if a concept has a support for multi subconcept, do not binarize it but diminish the number of supported subconcepts by priotizing the most important ones. 
-
-And then for each concept in simplified_concepts_to_implement.md create me a clarification markdown file
-which includes answer to these questions:
-
- For each concept write
-    - clear short explanation what it is and why it matters
-    - How this concept helps the overall project
-    - How this concept limits the overall project
-    - What kind of information this concept needs as input
-    - What kind of process this concept should use
-    - What kind of information this concept outputs or relays
-    - explain the good expected outcome of realizing this concept
-    - explain the bad unwanted outcome of realizing this concept
-
-Put 1_ 2_ 3_ like prefix of each file to order them and make sure priotize the core concepts when you are ordering them. and do this in devdocs/simplified_concept_clarifications/
-
-"""
 
 
 ## Module-Level Documentation
@@ -452,6 +310,91 @@ Each module needs its own context. Don't assume it's obvious.
 - [ ] Document each module's purpose and boundaries
 
 DevDocs pattern transforms AI from code generator to thoughtful collaborator who understands not just what to build, but why and how it fits together.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Concepts Documentation
+ 
+### concepts.md & concept_clarifications
+
+Extract key technical concepts from requirements
+
+"""
+Using these project_description.md, philosophy.md,  known_requirements.md
+ create me 
+   - `concepts_to_implement.md`  by extracting the key
+technical concepts (needed ones only and core ones. )
+
+and then for each concept in concepts_to_implement.md create me a clarification markdown file
+which includes answer to these questions:
+    
+    For each concept write
+    - clear short explanation what it is and why it matters
+    - How this concept helps the overall project
+    - How this concept limits the overall project
+    - What kind of information this concept needs as input
+    - What kind of process this concept should use
+    - What kind of information this concept outputs or relays
+    - explain the good expected outcome of realizing this concept
+    - explain the bad unwanted outcome of realizing this concept
+
+Put 1_ 2_ 3_ like prefix of each file to order them and make sure priotize the core concepts when you are ordering them. and do this in devdocs/concept_clarifications/
+"""
+
+### simplified_concepts.md & simplified_concept_clarifications/
+
+
+The concept_clarifications dir contains many concepts. And implementing each of them with their full scope is not a good idea.  And there is a high chance when you read all 
+these full scope concepts you felt overwhelmed and it will be same for ai too. Our job as a human in the loop is to 
+make AI do the work in a modular gradual increments.  
+
+So at first we want to create a working prototpye and then expand this prototype to MVP over time. 
+This is why first we will ask AI to create simplified_concepts_to_implement.md file. 
+
+But when it is simplifiying these features it must not oversimplify the concept that in the end when we are going to expand the features we would need full rewrite of databases and submodules. 
+
+This is a step where you get to be human in the loop and actually do some real work. It is vital for the rest of the development that you edit the these simplified concept files. Make sure you read them and clarify anything which doesnt make sense. 
+
+
+"""
+I want you to create simplified_concepts_to_implement.md using concepts_to_implement.md and the goal is to trim the features but the core ones for each concept so we can still have these concepts but they are more about prototype. 
+
+And make sure you follow these rules during simplification
+        - do not oversimplify the concept to the point underlying architecture is oversimplified and does not support the original concept
+        - if a concept has a support for multi subconcept, do not binarize it but diminish the number of supported subconcepts by priotizing the most important ones. 
+
+And then for each concept in simplified_concepts_to_implement.md create me a clarification markdown file
+which includes answer to these questions:
+
+ For each concept write
+    - clear short explanation what it is and why it matters
+    - How this concept helps the overall project
+    - How this concept limits the overall project
+    - What kind of information this concept needs as input
+    - What kind of process this concept should use
+    - What kind of information this concept outputs or relays
+    - explain the good expected outcome of realizing this concept
+    - explain the bad unwanted outcome of realizing this concept
+
+Put 1_ 2_ 3_ like prefix of each file to order them and make sure priotize the core concepts when you are ordering them. and do this in devdocs/simplified_concept_clarifications/
+
+"""
 
 
 
