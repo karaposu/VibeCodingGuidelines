@@ -1,9 +1,7 @@
 # Smoke Tests Pattern
 
-Smoke tests Pattern provides  
-     - Validation that AI understands your intent and you understand AI's intent. 
-     - Shows AI indeed did what think it wanted to do
-     - Early warning system and prevent propagations of misunderstandings
+
+AI can generate perfectly valid code that solves the wrong problem. Smoke tests reveal this immediately.
 
 ## What Are Smoke Tests?
 
@@ -15,12 +13,26 @@ So basically they let you quickly confirm that core functionality works under mi
 
 ## Smoke Tests in Vibe Coding
 
-In vibe coding they verbosity is essential. Unlike traditional TDD focused on CI/CD automation, vibe coding emphasizes comprehensive logging and data visibility. Smoke tests serve not just to verify pass/fail status, but to expose actual data flow, data transformations and intermediate states and values, allowing AI& developers to understand exactly what's happening during execution. 
+Smoke tests Pattern provides  
+    - Validation that AI understands your intent and you understand AI's intent. 
+    - Shows AI indeed did what think it wanted to do
+    - Early warning system and prevent propagations of misunderstandings
+    - comprehensive summary of your project/module
 
-And you will see that AI-generated tests often default to minimal output or use mocks that obscure real behavior. Which if not checked might have result in Phantom success.  
+
+Smoke tests serve not just to verify pass/fail status, but to expose actual data flow, data transformations and intermediate states and values, allowing AI& developers to understand exactly what's happening during execution. 
 
 
-We ask AI to create smoke tests which covers 
+## How to Implement Smoke Tests pattern correctly
+
+
+### 0. Verbose Over Clever
+
+Make smoke tests verbose and show the data flow as well as key transformations (with raw samples and summaries).  Smoke tests are for both human dev and AI.  
+
+### 1. Comprehensivity 
+
+It is important for smoke tests to cover differnet scenarios. In traditional software development this is done by using different types of tests:
 
   - Unit tests - Test individual functions/methods in isolation
   - Integration tests - Test how components work together
@@ -29,110 +41,16 @@ We ask AI to create smoke tests which covers
   - Performance/Load tests - Test speed and scalability
 
 
+And in vibe coding we adapt these tests into our Smoke Tests pattern. 
 
 
 
-Rules regarding smoke tests:
+### 2. Progressive Complexity
 
+The smoke tests shold start from isolated method checks and evolve into testing concepts while each file Each file testing deeper understanding 
 
-- The smoke tests shold start from isolated method checks and evolve into testing concepts while each file Each file testing deeper understanding ( test_login_returns_token >>>> ... >>>> test_basic_auth_flow_works )
-- Smoke tests should read like documentation so we can intervene 
-- Smoke tests are a lot cheaper than wrong implementation, so create them as much as needed. 
-- AI  works well with Smoke Test loop   Run test> Fix failures >Run again > Run next Test
-- Name the Tests Clearly and Readble. 
-- Tests act as comprehensive summary of your project/module. 
+test_login_returns_token >>>> ... >>>> test_basic_auth_flow_works 
 
- 
-
-
-
-## Why Smoke Tests Matter for AI
-
-AI can generate perfectly valid code that solves the wrong problem. Smoke tests reveal this immediately.
-
-Example:
-```
-Human: "Create user authentication"
-AI: *builds biometric authentication system*
-Smoke test file shows eye scanner codes
-Human: "Wait, I meant just email/password"
-
-```
-
-
-The smoke tests shold start from isolated method checks and evolve into testing concepts while each file Each file testing deeper understanding ( test_login_returns_token >>>> ... >>>> test_basic_auth_flow_works )
-
-
-Smoke tests should read like documentation so we can intervene 
-
-Smoke tests are a lot cheaper than wrong implementation, so create them as much as needed. 
-
-AI  works well with Smoke Test loop   Run test> Fix failures >Run again > Run next Test
-
-Name the Tests Clearly and Readble. 
-
-Tests as comprehensive summary  
-
-
-Design 5 test files before implementing anything
-
-
-## The Smoke Test Philosophy
-
-### Test Understanding, Not Implementation
-
-Traditional tests verify correctness.
-Smoke tests verify comprehension.
-
-```python
-# Traditional test
-def test_login_returns_token():
-    assert login(user, pass).startswith("jwt")
-
-# Smoke test  
-def test_basic_auth_flow_works():
-    """Can a user sign up, log in, and access protected resource?"""
-    # Tests the entire concept, not details
-```
-
-### Verbose Over Clever
-
-Smoke tests should read like documentation:
-
-```python
-def test_expense_entry_complete_flow():
-    """
-    Test that a user can:
-    1. Open the expense entry form
-    2. Enter an amount
-    3. Select a category
-    4. Save the expense
-    5. See it in their expense list
-    
-    This is the core user journey that must work.
-    """
-```
-
-AI uses these descriptions to understand intent.
-
-## Designing Smoke Tests
-
-### The 5-File Pattern
-
-Design 5 test files before implementing anything:
-
-```
-smoke_tests/
-├── test_01_initialization.py
-├── test_02_core_functionality.py  
-├── test_03_user_workflows.py
-├── test_04_edge_cases.py
-└── test_05_integration.py
-```
-
-### Progressive Complexity
-
-Each file tests deeper understanding. 
 It is common to have first file as 
 
 test_01_initialization.py
@@ -149,72 +67,43 @@ test_02_connectivity.py
   - Do authentication mechanisms work?
   - Can we read/write to external resources?
 
-but each app is different and have different requirements. So we can have as many smoke tests we want. 
 
 
+### 3. Clear Intent 
 
-## Implementing with Smoke Tests
+Smoke tests should read like documentation so we can intervene. Also Naming the Tests Clearly and Readble is important 
 
-### The Loop
 
-1. AI Designs smoke tests based on codebase
-3. AI implements smoke tests
-4. Run tests
-5. Fix failures 
-6. Repeat
+### 4. Full implementation Coverage 
 
-### Catching Misunderstandings Early
 
-When test fails:
+Smoke tests are a lot cheaper than wrong implementation, so create them as much as needed.
+
+One basic rule is to ask AI to design 5 smoke test files with each file testing seperate logic. Each file having at least 5 individual tests. 
+
 ```
-FAILED: test_no_user_accounts_needed
-AI added user registration flow
-```
+smoke_tests/
+├── test_01_initialization.py
+├── test_02_core_functionality.py  
+├── test_03_user_workflows.py
+├── test_04_edge_cases.py
+└── test_05_integration.py
+``` 
 
-Immediate correction:
-```
-"Our philosophy is no user accounts.
-Please remove registration and make it work locally only."
-```
+### 5. No mocking and Providing Real Data 
 
+And you will see that AI-generated tests often default to minimal output or use mocks that obscure real behavior. Which if not checked might have result in Phantom success.  
 
+It is your job to provide realistic data for smoke tests. If you are developing video engine or human voice detector
+unless you provide a real data example, AI wont be able to mock these complex data and create phantom success via mock data. 
 
-## Smoke Test Best Practices
+### 6. Always Rerun your smoke tests by yourself. 
+ 
+Common pitfall is to trust AI's execution and interpretation of a smoke test. Sometimes AI can claim success when most tests pass and some fail. And this is not okay. 
 
-### Name Tests Clearly and Readble
-
-```python
-# Bad
-def test_1():
-    pass
-
-# Good  
-def test_expense_entry_requires_only_amount_and_category():
-    pass
-```
-
-
-## Smoke Tests Evolution
-
-### Prototype Phase
-- Basic functionality
-- Happy paths only
-- Minimal edge cases
-
-### MVP Phase  
-- Add integration tests
-- Include error scenarios
-- Test performance basics
-
-### Production Phase
-- Comprehensive coverage
-- Security tests
-- Load testing
-
-Smoke tests are your contract with AI. Make them clear, make them run, make them matter.
-
-Next: Fuzzy Architecture Pattern →
+Also reading smoke test output is a really quick way to have an idea about how AI implemented the features in terms of input output manupulations. 
 
 
 
-### Tests as comprehensive summary  
+
+
