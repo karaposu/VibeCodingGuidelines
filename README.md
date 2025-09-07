@@ -67,7 +67,7 @@ create a devdocs folder, this folder will contain all future development related
 """
 and also using these project_description.md, philosophy.md,  known_requirements.md
  create me 
-   - `concepts_to_implement.md`  by extracting the key
+   - `concepts.md`  by extracting the key
 technical concepts (needed ones only and core ones. )
 
 and then for each concept in concepts_to_implement.md create me a clarification markdown file
@@ -102,13 +102,13 @@ But when it is simplifiying these features it must not oversimplify the concept 
 This is a step where you get to be human in the loop and actually do some real work. It is vital for the rest of the development that you edit the these simplified concept files. Make sure you read them and clarify anything which doesnt make sense. 
 
 """
-I want you to create simplified_concepts_to_implement.md using concepts_to_implement.md and the goal is to trim the features but the core ones for each concept so we can still have these concepts but they are more about prototype. 
+I want you to create simplified_concepts.md using concepts.md and the goal is to trim the features but the core ones for each concept so we can still have these concepts but they are more about prototype. 
 
 And make sure you follow these rules during simplification
         - do not oversimplify the concept to the point underlying architecture is oversimplified and does not support the original concept
         - if a concept has a support for multi subconcept, do not binarize it but diminish the number of supported subconcepts by priotizing the most important ones. 
 
-And then for each concept in simplified_concepts_to_implement.md create me a clarification markdown file
+And then for each concept in simplified_concepts.md create me a clarification markdown file
 which includes answer to these questions:
 
  For each concept write
@@ -242,7 +242,8 @@ Ensure both documents are comprehensive and will serve as clear contracts for fu
 - Save the complete test design to smoke_test_design.md
 
 ```
-Let's design comprehensive smoke tests to validate our implementation. Please create a test plan with the following structure:
+Let's design comprehensive smoke tests to validate our implementation. 
+Please create smoke_tests folder if it doesnt exists. and Please create a test plan with the following structure:
 
 - 5 test files, each containing 5 focused test cases
 - File naming convention: test_01_[test_focus_area].py, test_02_[next_focus_area].py, etc.
@@ -250,9 +251,8 @@ Let's design comprehensive smoke tests to validate our implementation. Please cr
   - Clear description of what aspect it tests
   - Why this testing area is critical
   - Brief outline of each test case within the file
+- these tests shouldnt use any testing frameworks. Make the outputs verbose enough so you can see what exactly does not work 
 
-The tests should progress from basic initialization and setup through increasingly complex functionality.
-Please document this complete test design in smoke_test_design.md within the module folder.
 ```
 
 ### 8. Implement and Run the First Smoke Test

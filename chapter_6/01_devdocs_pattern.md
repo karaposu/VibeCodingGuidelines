@@ -46,8 +46,8 @@ project-root/
     │   ├── concept_clarifications/
     │   ├── simplified_concept_clarifications/
     │   ├── decisions.md
-    │   ├── what_I_learned.md
-        ├── user_stories.md
+        ├── enhancements
+                  debug_enhancement_proposal.md
     │   └── modules/
     │       └── module_a/
     │           ├── what_is_this_for.md
@@ -66,7 +66,7 @@ project-root/
                         explaination.md (includes when this issue occurs, and why it is problem in context of whole app) 
                         what_i_learned.md (explains what was done wrongly and why and what was the solition about this issue )
             unsolved
-            future
+            relevant_to_future
     |
 ```
 
@@ -74,145 +74,8 @@ project-root/
 Lets start going through the each document and reason why we are having it
 
 
-##  Project Desc  ROOT Documentation
-
-## The Three Foundation Documents
-
-### 1. project_description.md
-
-This document explains the project in general with all available details. It is basically structured version of messy project data.
-  It should answer:
-     What are we building?
-     What problem are we solving
-     What are the various scopes of this project?
 
 
-This document anchors everything. AI reads this first.
-
-### 2. philosophy.md
-
-This document focuses of real world impacts/motivations/goals of the project. Holds important information and prevents  Complexity Drift as well as Scope Drift. 
-Answers "what is the philosophy of this project?". Doesnt go into technical details but aims to capture the soft requirements and goals which are usually missed. 
-
-
-
-### 3. known_requirements.md
-
-Answer the question of 
-What constraints exist for given project. 
-And inspect the Requirements in 3 main categories:
-
- - Known Technical Requirements
- - Known Business Requirements
- - Known User Requirements
-
-Requirements ground AI suggestions in reality.
-
-
-## Concept Documents 
-
-
-Identifying the concepts are vital during the development. Bad concept understanding ll evolve into bad  architecture and toxic development. 
-
-Concepts can be anything.  A concept is a meta name which can be anything related to the development. It can be a essential requirement, a payment verification module or unique architecture for the product in interest. 
-Concept documentations answer what needs to be done in a higher level and perfect way to do modularized development practice. 
-
-
-### concepts.md
-
-This document lists all concepts using root project documentations. (project_description.md, philosophy.md,  known_requirements.md)
- To be not overbloated we ask AI to create it using key technical concepts only. 
-
-### concepts_clarifications folder 
-
-We ask AI to create clarifications for each concept listed in concepts.md file. 
-This is folder will contain aroud 10 different documentation. Explaining each concept. 
-And as a human in the loop we get to read them and have full understanding of AI's mind. 
-
-And each concept documentation answer these questions: 
-    - clear short explanation what it is and why it matters
-    - How this concept helps the overall project
-    - How this concept limits the overall project
-    - What kind of information this concept needs as input
-    - What kind of process this concept should use
-    - What kind of information this concept outputs or relays
-    - explain the good expected outcome of realizing this concept
-    - explain the bad unwanted outcome of realizing this concept
-
-Which inspect the concept from multiple point of views and doesnt allow anything to be missed. 
-
-
-
-### simplified_concepts.md
-
-When we start developing something new usually we start with prototyping and then continues enhancements and feature additions turn protoype into a MVP.  there is a high chance when you read all 
-these full scope concepts in concepts.md  you feel overwhelmed and it will be same for ai too. Our job as a human in the loop is to  make AI do the work in a modular gradual controllable increments.  
-
-AI wont do that by itself. Even tho it is possible to ask AI to implement a prototype version with less features is possible you will notice that AI's simplification intuition is not well finetuned and must be checked by human. 
-
-This is why we are asking AI to create this documentation for us (hiling). So we can hil it.. 
-
-During this stage we ask ai to
-
-  - do not oversimplify the concept to the point underlying architecture is oversimplified and does not support the original concept
-  - if a concept has a support for multi subconcept, do not binarize it but diminish the number of supported subconcepts by priotizing the most important ones. 
-
-
-### simplified_concepts folder 
-
-Same as concepts_clarifications folder. 
-We ask AI to create clarifications for each concept listed in simplified_concepts.md file. Explaining each concept. 
-And as a human in the loop we get to read them and have full understanding of AI's mind. 
-
-And each concept documentation answer these questions: 
-    - clear short explanation what it is and why it matters
-    - How this concept helps the overall project
-    - How this concept limits the overall project
-    - What kind of information this concept needs as input
-    - What kind of process this concept should use
-    - What kind of information this concept outputs or relays
-    - explain the good expected outcome of realizing this concept
-    - explain the bad unwanted outcome of realizing this concept
-
-
-
-
-
-Existance of simplified_concepts.md with concepts.md together in the code base is vital.  These 2 devdocs provide the expansion scope to the ai and when new middle-concepts are introduced AI can arange them in such way that they are suitable for current and future scoppes. 
-
-
-
-## Other Devdoc Files
-
-### decisions.md
-
-this document is to log architectural decisions with their reasons. 
-This is important to anchor our development progress cross sessions. 
-Sometime we come across a bug or edge case scenario where we are spend hours coming up with an elegant solution design or architecture tweak to solve it. But such solution is not clear from the very beginning and if AI somehow
-loses the context then when it looks at this design without the edge case in mind it can decide this is something uncessary and break the delecate solution. 
-
-
-Each entry in this document explains 
-    - what is current bottleneck/issue
-    - what are the options considered
-    - what option is selected and why
-    - Explain in a high level what consequences this change might cause 
-
-it looks like this:
-
-```markdown
-# Architectural Decisions
-
-## 2024-01-15: Use SQLite for local storage
-- Considered: JSON files, SQLite, Realm
-- Chose SQLite for: SQL queries, proven reliability, zero config
-- Trade-off: Slightly larger app size
-
-## 2024-01-20: Monolith over microservices
-- Keeps deployment simple
-- Single user app doesn't need service separation
-- Can split later if needed
-```
 
 
 ### what_I_learned.md
@@ -226,26 +89,7 @@ details and just like any developer AI also can identify these and it is nice id
 
 
 
-## Module-Level Documentation
 
-Since we are building the our project in a decoupled way., We are gonna have multiple submodules. 
-And these modules should be able to integrate with each other.  
-
-Requirement change of one module will surely have some effect on interface and maybe deeper level on another submodule. 
-This is why we are gonna keep up-to-date documentation for each. 
-You might think code is the documentation and this is an overkill, however code itself does not exlain "why"  and during integration development of multiple modules why matters as much as code itself. Multi module Development is a parallel process where each change in either module might propagate backwards and forward and might break the requirement. 
-
-
-
-## The Human-in-the-Loop Moment
-
-This is a step where you get to be human in the loop and actually do some real work. It is vital for the rest of the development that you edit these simplified concept files. Make sure you read them and clarify anything which doesn't make sense.
-
-Review and adjust:
-- Is simplification too aggressive?
-- Will this create technical debt?
-- Does it still solve core problem?
-- Can we build on this foundation?
 
 ## Using DevDocs with AI
 

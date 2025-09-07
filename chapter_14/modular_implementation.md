@@ -45,7 +45,7 @@ Ensure all files include appropriate headers and follow our established conventi
 
 ## Implementing a Module
 
-### The Five-File Rule
+### The Five-File Rule 
 
 If AI generates more than 5 files for a single module, it's too complex:
 
