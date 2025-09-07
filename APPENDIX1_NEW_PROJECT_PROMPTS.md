@@ -125,10 +125,11 @@ We want development to be done in modular way. This ensures project stays in deb
 This step identifies all possible modules. 
 
 
-"""
+```
+
 Review the simplified concepts and identify logical abstractions that can be organized into modules. Focus on creating a modular architecture that will facilitate cleaner, more maintainable development. Ensure the proposed modularity doesn't compromise performance or security requirements. Avoid over-engineering - only modularize major conceptual boundaries. Document your module structure proposal in module_proposal.md
 
-"""
+```
 
 
 ### Phase 5: Architecture and Structure
@@ -155,7 +156,7 @@ Key considerations:
 One way to enforce AI to do the development is done in a moduler way is to implement one by one. 
 
    
-"""
+```
  
 With the project information, architecture overview, and module structure defined, select the first module for implementation.
    Choose a module that:
@@ -171,13 +172,13 @@ With the project information, architecture overview, and module structure define
   2.  what the interface/endpoints this module would show
   3.  how it would be used with pseudo code
   4.  how it will be used by other/core modules (in a high level without definitive definition)
-"""
+```
 
 
 
 ### Phase 8: Module implementation
 
- """
+ ```
 
  Please implement this module with required files. Based on our previous discussions and documentation, 
 please provide:
@@ -186,7 +187,7 @@ please provide:
 - Full implementation for each file
 - All necessary code to make this module functional
 
- """
+ ```
 
 
 
@@ -194,7 +195,7 @@ please provide:
 
 Details are explained in chapter_7/smoke_tests_pattern.md
 
-"""
+```
 Let's design comprehensive smoke tests to validate our implementation. 
 Please create smoke_tests folder if it doesnt exists. and Please create a test plan with the following structure:
 
@@ -212,17 +213,17 @@ Please create smoke_tests folder if it doesnt exists. and Please create a test p
 5. these tests shouldnt use any testing frameworks. Make the outputs verbose enough so you can see what exactly does not work. 
 6. Start with initialization test file. 
 7. Each test file's top comment should include how to run it manually. 
-"""
+```
 
 
 ### Phase 10: Running the smoke test and fix the errors
 
 It is important to run smoke tests by ourself. First we will let AI do this and then we should run them by ourselves. 
 
-"""
+```
 Lets run each smoke test one by one and fix all errors. If you find errors and cant fix them after 3 changes break down the smoke test into a smaller more isolated forms with more verbose outputs ( in smoke tests files) And rerun them. 
 
-"""
+```
 
 
 
@@ -310,6 +311,6 @@ Create supporting documentation for development:
 
 ### Phase 13: INTEGRATION & SMOKE TESTS
 
-"""
+```
 
-"""
+```
